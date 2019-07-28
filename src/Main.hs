@@ -2,10 +2,7 @@ module Main where
 
 import System.Environment
 import Parse
+import Eval
 
 main :: IO ()
-main = do
-  (expr:_) <- getArgs
-  putStrLn $ "Input: " ++ expr
-  putStrLn $ readExpr expr
-
+main = getArgs >>= print . eval . readExpr . head

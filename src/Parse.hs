@@ -5,7 +5,7 @@ import Text.ParserCombinators.Parsec hiding (spaces)
 import Ast
 
 symbol :: Parser Char
-symbol = oneOf "!+$%&|*+-/:<=>?@^_~"
+symbol = oneOf "!+$%&|*+-/:<=>?@^_~#"
 
 spaces :: Parser ()
 spaces = skipMany space
@@ -80,8 +80,8 @@ parseExpr = parseAtom
         <|> parseVector
         <|> parseParens
 
-readExpr :: String -> String
+readExpr :: String -> LispVal
 readExpr input =
   case parse (spaces >> parseExpr) "lisp" input of
-  Left err -> "No match: " ++ show err
-  Right val -> "Found value: " ++ show val
+  Left err -> String $ "No match: " ++ show err
+  Right val -> val
