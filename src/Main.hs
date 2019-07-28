@@ -6,6 +6,11 @@ import Ast
 import Parse
 import Eval
 
+repl :: String -> IO ()
+repl arg = do
+  evaled <- return $ liftM show $ readExpr arg >>= eval
+  putStrLn $ extractValue $ trapError evaled
+
 main :: IO ()
 main = do
   args <- getArgs

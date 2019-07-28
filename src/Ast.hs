@@ -12,6 +12,7 @@ data LispError = NumArgs Integer [LispVal]
               | Default String
 
 showError :: LispError -> String
+showError (Default message)             = message
 showError (UnboundVar message varname)  = message ++ ": " ++ varname
 showError (BadSpecialForm message form) = message ++ ": " ++ show form
 showError (NotFunction message func)    = message ++ ": " ++ show func
