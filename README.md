@@ -5,6 +5,7 @@ This project is an implementation of a Scheme interpreter, as described by
 
 ## Running The Project
 
+    cabal sandbox init
     cabal run
 
 ## Checklist
