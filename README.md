@@ -3,6 +3,10 @@
 This project is an implementation of a Scheme interpreter, as described by 
 [Write Yourself a Scheme in 48 Hours](https://en.wikibooks.org/wiki/Write_Yourself_a_Scheme_in_48_Hours).
 
+## Running The Project
+
+    cabal run
+
 ## Checklist
 
 1. ~~Parser~~
