@@ -2,6 +2,7 @@ module Parse where
 
 import Control.Monad
 import Text.ParserCombinators.Parsec hiding (spaces)
+import Control.Monad.Error.Class
 import Ast
 
 symbol :: Parser Char
@@ -80,8 +81,8 @@ parseExpr = parseAtom
         <|> parseVector
         <|> parseParens
 
-readExpr :: String -> LispVal
+readExpr :: String -> ThrowsError LispVal
 readExpr input =
   case parse (spaces >> parseExpr) "lisp" input of
-  Left err -> String $ "No match: " ++ show err
-  Right val -> val
+  Left err -> throwError $ Parser err
+  Right val -> return val
